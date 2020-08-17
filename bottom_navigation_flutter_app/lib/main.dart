@@ -82,6 +82,9 @@ class BottomNavigationBar4ItemsState extends State<BottomNavigationBar4Items> {
           currentIndex: selectedIndex,
           // 必须给 currentIndex 赋 当前选中的 index（就是 item的 index） item才能点击便色
           onTap: onItemTaped,
+          // 默认是 shifting 类型的, 点击之后，当前的item的控件变大
+          // 改成 fixed 类型的, item 的背景色无效, 点击 item之后, 可以变色.
+          type: BottomNavigationBarType.fixed,
         ));
   }
 
