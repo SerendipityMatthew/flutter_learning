@@ -66,7 +66,13 @@ class ScaffoldWidgetState extends State<ScaffoldWidget> {
         tooltip: 'Add',
         child: const Icon(Icons.add),
         backgroundColor: Colors.green,
+        // floatingActionButton 的形状, 圆角矩形
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0))
+        ),
       ),
+      // FloatActionButton 的位置信息,
+      floatingActionButtonLocation:  FloatingActionButtonLocation.endTop,
       persistentFooterButtons: <Widget>[
         MaterialButton(
           child: Text('Matthew'),
