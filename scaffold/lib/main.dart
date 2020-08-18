@@ -17,8 +17,11 @@ class ScaffoldWidget extends StatefulWidget {
   }
 }
 
-class ScaffoldWidgetState extends State<ScaffoldWidget> {
+class ScaffoldWidgetState extends State<ScaffoldWidget>
+    with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
+  TabController _tabController;
+
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'index: 0',
@@ -55,11 +58,32 @@ class ScaffoldWidgetState extends State<ScaffoldWidget> {
   ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(icon: Icon(Icons.add), onPressed: null),
+          IconButton(icon: Icon(Icons.list), onPressed: null),
+        ],
         backgroundColor: Colors.blue,
         title: const Text("App Bar Title"),
+        centerTitle: true,
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: [
+            Text('Matthew 1'),
+            Text('Matthew 2'),
+            Text('Matthew 3'),
+          ],
+        ),
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       floatingActionButton: FloatingActionButton(
@@ -68,11 +92,11 @@ class ScaffoldWidgetState extends State<ScaffoldWidget> {
         backgroundColor: Colors.green,
         // floatingActionButton 的形状, 圆角矩形
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10.0))
+            borderRadius: BorderRadius.all(Radius.circular(10.0))
         ),
       ),
       // FloatActionButton 的位置信息,
-      floatingActionButtonLocation:  FloatingActionButtonLocation.endTop,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       persistentFooterButtons: <Widget>[
         MaterialButton(
           child: Text('Matthew'),
