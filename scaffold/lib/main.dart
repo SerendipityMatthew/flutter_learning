@@ -21,6 +21,7 @@ class ScaffoldWidgetState extends State<ScaffoldWidget>
     with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
   TabController _tabController;
+  List _tabs = ["Matthew", "Mona", "Angela", "Jessica"];
 
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
@@ -61,8 +62,7 @@ class ScaffoldWidgetState extends State<ScaffoldWidget>
   void initState() {
     // TODO: implement initState
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
-
+    _tabController = TabController(length: _tabs.length, vsync: this);
   }
 
   @override
@@ -78,11 +78,11 @@ class ScaffoldWidgetState extends State<ScaffoldWidget>
         centerTitle: true,
         bottom: TabBar(
           controller: _tabController,
-          tabs: [
-            Text('Matthew 1'),
-            Text('Matthew 2'),
-            Text('Matthew 3'),
-          ],
+          tabs: _tabs
+              .map((item) => Tab(
+                    text: item,
+                  ))
+              .toList(),
         ),
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
@@ -92,8 +92,7 @@ class ScaffoldWidgetState extends State<ScaffoldWidget>
         backgroundColor: Colors.green,
         // floatingActionButton 的形状, 圆角矩形
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10.0))
-        ),
+            borderRadius: BorderRadius.all(Radius.circular(10.0))),
       ),
       // FloatActionButton 的位置信息,
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
