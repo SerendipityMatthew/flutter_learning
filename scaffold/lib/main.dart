@@ -85,7 +85,18 @@ class ScaffoldWidgetState extends State<ScaffoldWidget>
               .toList(),
         ),
       ),
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: TabBarView(
+        controller: _tabController,
+        children: _tabs.map((e) {
+          return Container(
+            alignment: Alignment.center,
+            child: Text(
+              e,
+              textScaleFactor: 5,
+            ),
+          );
+        }).toList(),
+      ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add',
         child: const Icon(Icons.add),
